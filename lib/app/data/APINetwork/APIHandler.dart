@@ -4,8 +4,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import 'APIs.dart';
-
 enum MethodType { POST, GET, PUT, DELETE }
 
 const Duration timeoutDuration = Duration(seconds: 60);
@@ -23,7 +21,6 @@ class APIHandler {
     Map<String, String> additionalHeaders = const {},
   }) async {
     return await _hitApi(
-      context: context,
       endpoint: endpoint!,
       methodType: MethodType.POST,
       requestBody: requestBody,
@@ -33,12 +30,10 @@ class APIHandler {
   // GET method
   static Future<dynamic> get({
     required String endpoint,
-    required BuildContext context,
     dynamic requestBody,
     Map<String, String> additionalHeaders = const {},
   }) async {
     return await _hitApi(
-      context: context,
       endpoint: endpoint,
       methodType: MethodType.GET,
       requestBody: requestBody,
@@ -52,7 +47,6 @@ class APIHandler {
     Map<String, String> additionalHeaders = const {},
   }) async {
     return await _hitApi(
-      context: context,
       endpoint: endpoint,
       methodType: MethodType.DELETE,
     );
@@ -66,7 +60,6 @@ class APIHandler {
     Map<String, String> additionalHeaders = const {},
   }) async {
     return await _hitApi(
-      context: context,
       endpoint: endpoint,
       methodType: MethodType.PUT,
       requestBody: requestBody,
@@ -75,14 +68,13 @@ class APIHandler {
 
   // Generic HTTP method
   static Future<dynamic> _hitApi({
-    required BuildContext context,
     required MethodType methodType,
     required String endpoint,
     dynamic requestBody,
   }) async {
     Completer<dynamic> completer = Completer<dynamic>();
     try {
-      Uri uri = Uri.parse('${Apis.baseURL}$endpoint');
+      Uri uri = Uri.parse(endpoint);
       Map<String, String> headers = {};
       headers.addAll(defaultHeaders);
 

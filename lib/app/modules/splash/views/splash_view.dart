@@ -9,8 +9,8 @@ class SplashView extends GetView<SplashController> {
   SplashView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: const Center(
+    return const Scaffold(
+      body: Center(
         child: Text(
           'Al Hadith Books',
           style: TextStyle(fontSize: 20),
