@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../controllers/splash_controller.dart';
 
 class SplashView extends GetView<SplashController> {
-  const SplashView({Key? key}) : super(key: key);
+  final SplashController splashController = Get.put(SplashController());
+
+  SplashView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('SplashView'),
-        centerTitle: true,
-      ),
       body: const Center(
         child: Text(
-          'SplashView is working',
+          'Al Hadith Books',
           style: TextStyle(fontSize: 20),
         ),
       ),
